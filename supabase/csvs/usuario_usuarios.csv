@@ -1,0 +1,2 @@
+id_usuario,id_cat_rol,activo,nombres,apellidos,correo,ts_creado,ts_modificado
+1,1,true,Juan,Perez,juan@email.com,2026-03-11 10:00:00,

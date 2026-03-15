@@ -1,0 +1,2 @@
+id_rutina,id_creador,nombre,nivel,objetivo,tipo_objetivo,es_default,activo,ts_creado,ts_modificado
+1,1,Rutina Basica,1,Ganar fuerza,Fuerza funcional,false,true,2026-03-11 10:00:00,

@@ -1,0 +1,2 @@
+rutina_usuario,id_rutina,id_usuario,activo,duracion,dias_semana
+1,1,1,true,60,3
