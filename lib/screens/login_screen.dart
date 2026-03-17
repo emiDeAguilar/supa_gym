@@ -44,13 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _googleSignInFlow() async {
 
-    final GoogleSignInAccount? googleUser =
+    final GoogleSignInAccount googleUser =
         await _googleSignIn.authenticate();
 
     if (googleUser == null) return;
 
     final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+        googleUser.authentication;
 
     final String? idToken = googleAuth.idToken;
 

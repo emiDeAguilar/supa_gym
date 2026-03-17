@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supa_routines/screens/features/auth/login_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supa_routines/main.dart';
-import 'package:supa_routines/screens/features/auth/login_service.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});

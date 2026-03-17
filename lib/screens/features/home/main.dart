@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supa_routines/screens/features/auth/login_screen.dart';
 import 'package:supa_routines/screens/features/profile/account_page.dart';
-import 'package:supa_routines/screens/features/auth/login_service.dart';
 import 'package:supa_routines/secrets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
