@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supa_routines/main.dart';
-import 'package:supa_routines/screens/account_page.dart';
+import 'package:supa_routines/screens/features/profile/account_page.dart';
+import 'package:supa_routines/screens/features/auth/login_service.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,8 +15,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _authService = AuthService();
+
   bool _isLoading = false;
   bool _redirecting = false;
+
   late final TextEditingController _emailController = TextEditingController();
   late final StreamSubscription<AuthState> _authStateSubscription;
 
@@ -24,11 +28,9 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _isLoading = true;
       });
-      await supabase.auth.signInWithOtp(
-        email: _emailController.text.trim(),
-        emailRedirectTo:
-            kIsWeb ? null : 'io.supabase.flutterquickstart://login-callback/',
-      );
+
+      await _authService.signIn(_emailController.text);
+
       if (mounted) {
         context.showSnackBar('Check your email for a login link!');
 
@@ -51,7 +53,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    _authStateSubscription = supabase.auth.onAuthStateChange.listen(
+    super.initState();
+    _authStateSubscription = _authService.authChanges().listen(
       (data) {
         if (_redirecting) return;
         final session = data.session;
@@ -64,13 +67,16 @@ class _LoginPageState extends State<LoginPage> {
       },
       onError: (error) {
         if (error is AuthException) {
-          context.showSnackBar(error.message, isError: true);
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(error.message)));
         } else {
-          context.showSnackBar('Unexpected error occurred', isError: true);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Unexpected error occurred')),
+          );
         }
       },
     );
-    super.initState();
   }
 
   @override
@@ -88,12 +94,16 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         children: [
           const Text('Sign in via the magic link with your email below'),
+
           const SizedBox(height: 18),
+
           TextFormField(
             controller: _emailController,
             decoration: const InputDecoration(labelText: 'Email'),
           ),
+
           const SizedBox(height: 18),
+
           ElevatedButton(
             onPressed: _isLoading ? null : _signIn,
             child: Text(_isLoading ? 'Sending...' : 'Send Magic Link'),
