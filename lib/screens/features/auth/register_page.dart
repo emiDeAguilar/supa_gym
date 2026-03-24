@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:supa_routines/main.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -25,13 +27,43 @@ class _RegisterPageState extends State<RegisterPage> {
       ).showSnackBar((const SnackBar(content: Text("Passwords don't match"))));
       return;
     }
+    // try {
+      // final response = await authService.signUpWithPassword(email, password);
+      await supabase.auth.signUp(email:email, password:  password);
+
+    //   final userId = response.user?.id;
+    //   if (userId == null) {
+    //     throw Exception("User not returned after signup");
+    //   }
+      
+    //   // await createProfile(userId, email);
+    // } catch (e) {
+    //   if (mounted) {
+    //     ScaffoldMessenger.of(
+    //       context,
+    //     ).showSnackBar(SnackBar(content: Text("Error: $e")));
+    //   }
+    // }
+  }
+
+  Future<void> createProfile(String userId, String email) async {
+    final values = {'id_usuario': userId, 'correo': email, 'activo': true};
     try {
-      await authService.signUpWithPassword(email, password);
-    } catch (e) {
+      await supabase.from('Usuario_usuarios').insert(values);
+    } on PostgrestException catch (error) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("Error: $e")));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error.message), backgroundColor: Colors.red),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Unexpected error."),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     }
   }

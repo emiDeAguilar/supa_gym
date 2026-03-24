@@ -1,0 +1,20 @@
+add this to sign in:
+
+bool isLoading = false;
+ElevatedButton(
+              onPressed: isLoading
+                  ? null
+                  : () async {
+                      setState(() => isLoading = true);
+
+                      try {
+                        await signUp();
+                      } finally {
+                        if (mounted) {
+                          setState(() => isLoading = false);
+                        }
+                      }
+                    },
+
+)
+

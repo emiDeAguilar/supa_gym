@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 

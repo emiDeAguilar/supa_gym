@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:supa_routines/main_shell.dart';
 import 'package:supa_routines/screens/features/auth/login_page.dart';
 import 'package:supa_routines/screens/features/profile/profile_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
