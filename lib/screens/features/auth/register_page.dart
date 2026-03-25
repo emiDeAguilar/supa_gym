@@ -72,9 +72,8 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             const SizedBox(height: 20),
             Container(
-              height: 40,
               alignment: Alignment.center,
-              child: const GymLogo(),
+              child: const GymLogo(isLightBg: true, logoSize: 40,),
             ),
             const SizedBox(height: 20),
 

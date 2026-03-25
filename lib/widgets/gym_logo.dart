@@ -1,40 +1,48 @@
 import 'package:flutter/material.dart';
 
 class GymLogo extends StatelessWidget {
-  const GymLogo({super.key});
+  final bool isLightBg;
+  final double logoSize;
+
+  const GymLogo({super.key, required this.isLightBg, required this.logoSize});
 
   @override
   Widget build(BuildContext context) {
-    Color ColorText = Theme.of(context).colorScheme.onPrimaryContainer;
+    Color lightText = Theme.of(context).colorScheme.onPrimaryContainer;
+    Color darkText = Colors.white;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-             FittedBox(
-                          fit: BoxFit.contain,
-                            child: Image(
-                              image: AssetImage('assets/images/isotipo.png'),
-                            ),
-                          
-                        ),
-        Text(
-          'JOS',
-          style: TextStyle(
-            color: ColorText, // Color del texto
-            fontSize: 40.0, // Tamaño de fuente grande para destacar
-            fontWeight: FontWeight.bold, // Fuente en negrita para impacto
-            fontFamily: 'Montserrat', // Fuente moderna y deportiva (opcional, ajusta si tienes fuentes personalizadas)
+        SizedBox(
+          height: logoSize*0.75,
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: 
+            isLightBg? 
+            Image(image: AssetImage('assets/image s/isotipo.png'))
+            :
+            Image(image: AssetImage('assets/images/isotipo_blanco.png')),
           ),
-        ),  
-        SizedBox(height: 10.0), // Espaciado pequeño entre las palabras
+        ),
+        Text(
+          'JOSS',
+          style: TextStyle(
+            color: isLightBg ? lightText : darkText,
+            fontSize: logoSize,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Montserrat',
+          ),
+        ),
+        SizedBox(height: 10.0),
         Text(
           'FITNESS',
           style: TextStyle(
-            color: ColorText,
-            fontSize: 40.0, // Tamaño de fuente más pequeño para el subtítulo
-            fontWeight: FontWeight.w400, // Peso de fuente normal
-            letterSpacing: 2.0, // Aumentar el espaciado entre letras para un aspecto más limpio
+            color: isLightBg ? lightText : darkText,
+            fontSize: logoSize,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 2.0,
           ),
         ),
       ],

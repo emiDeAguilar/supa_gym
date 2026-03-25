@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
 import 'package:supa_routines/screens/features/auth/register_page.dart';
+import 'package:supa_routines/widgets/gym_logo.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -43,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
           width: double.infinity,
           color: Theme.of(context).colorScheme.primaryContainer,
           child: Stack(
+            alignment: Alignment.center,
             children: [
               const Center(
                 child: Column(
@@ -65,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
               Positioned(
                 bottom: 0, left: 0, right: 0,
                 child: Container(
-                  height: 60,
+                  height: 100,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -75,6 +77,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
+              Container(
+              alignment: Alignment.center,
+              child: const GymLogo(isLightBg: false, logoSize: 40,),
+            ),
             ],
           ),
         ),
