@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supa_routines/widgets/welcome_name.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,11 +12,11 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
-        title: Text('This is Canada!'),
+        
       ),
       body: SafeArea(
         child: Center(
-          
+            child: WelcomeName(),
         ),
       ),
     );

@@ -25,4 +25,13 @@ class AuthService {
     final user = session?.user;
     return user?.id;
   }
+
+ Future<PostgrestMap?> userSelect(String authId)async{
+   final data = await _supabase
+        .from('users')
+        .select('username, gender, birth_date')
+        .eq('id', authId)
+        .maybeSingle();
+      return data;
+ }
 }

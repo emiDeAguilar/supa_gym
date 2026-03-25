@@ -27,29 +27,13 @@ class _RegisterPageState extends State<RegisterPage> {
       ).showSnackBar((const SnackBar(content: Text("Passwords don't match"))));
       return;
     }
-    // try {
-      // final response = await authService.signUpWithPassword(email, password);
       await supabase.auth.signUp(email:email, password:  password);
-
-    //   final userId = response.user?.id;
-    //   if (userId == null) {
-    //     throw Exception("User not returned after signup");
-    //   }
-      
-    //   // await createProfile(userId, email);
-    // } catch (e) {
-    //   if (mounted) {
-    //     ScaffoldMessenger.of(
-    //       context,
-    //     ).showSnackBar(SnackBar(content: Text("Error: $e")));
-    //   }
-    // }
   }
 
-  Future<void> createProfile(String userId, String email) async {
+  Future<void> addPersonalInfo(String userId, String email) async {
     final values = {'id_usuario': userId, 'correo': email, 'activo': true};
     try {
-      await supabase.from('Usuario_usuarios').insert(values);
+      await supabase.from('users').insert(values);
     } on PostgrestException catch (error) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
