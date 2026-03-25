@@ -57,10 +57,10 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: const Text("Sign up")),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Column(
           children: [
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             TextField(
               controller: _emailController,

@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
+          
             child: WelcomeName(),
         ),
       ),
