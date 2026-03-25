@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:supa_routines/main.dart';
 import 'package:supa_routines/main_shell.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
 import 'package:supa_routines/screens/features/auth/login_page.dart';
 import 'package:supa_routines/screens/features/userForm/add_user_page.dart';
-import 'package:supa_routines/widgets/user_form.dart';
-import 'package:supa_routines/screens/features/profile/profile_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthGate extends StatelessWidget {

@@ -37,15 +37,16 @@ class BottomMenu extends StatelessWidget {
               onPressed: () => onTap(0),
             ),
             CircularButton(
-              icon: Icons.inventory,
-              label: 'Productos',
+              icon: Icons.fitness_center,
+              label: 'Ejercicios',
               onPressed: () => onTap(1),
             ),
             CircularButton(
-              icon: Icons.attach_money,
-              label: 'Cobrar',
+              icon: Icons.sports_gymnastics,
+              label: 'Rutinas',
               onPressed: () => onTap(2),
             ),
+            
             // CircularButton(
             //   icon: Icons.verified_user_rounded,
             //   label: 'Dashboard',

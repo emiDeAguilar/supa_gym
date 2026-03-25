@@ -9,10 +9,7 @@ Future<void> main() async {
     url: Secrets().url,
     anonKey: Secrets().anonKey,
   );
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => UserState()..loadProfile(),
-      child: const MyApp()));
+  runApp(MyApp());
 }
 // WARNING, NOT RECOMMENDED FOR PROD: USE THIS ONLY WHEN EMAIL CONFIRMATION IS DISABLED
 final supabase = Supabase.instance.client;
@@ -24,19 +21,5 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home:AuthGate()
     );
-  }
-}
-
-class UserState extends ChangeNotifier {
-  Map<String, dynamic>? profile;
-
-  Future<void> loadProfile() async {
-    final user = Supabase.instance.client.auth.currentUser;
-    profile = await Supabase.instance.client
-        .from('users')
-        .select()
-        .eq('id', user!.id)
-        .single();
-    notifyListeners();
   }
 }

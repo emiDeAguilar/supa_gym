@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supa_routines/screens/exercises/exercises_page.dart';
 import 'package:supa_routines/screens/features/home/home_screen.dart';
 
 
@@ -11,6 +12,7 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     final pages = [
       const HomeScreen(),
+      const ExercisesPage(),
       // const ProductListPage(),
       // ProductSale(isActive: _currentIndex == 2),
       //const DashboardScreen(),
