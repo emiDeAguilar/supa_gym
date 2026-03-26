@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supa_routines/main.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
+import 'package:supa_routines/screens/features/userForm/add_user_page.dart';
 import 'package:supa_routines/widgets/gym_logo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supa_routines/styles/app_text_styles.dart';
@@ -30,8 +31,18 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
     await supabase.auth.signUp(email: email, password: password);
+    if (!mounted) {
+      return;
+    }
+    final result = Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AddUserPage()),
+    );
+    if (result == 'added') {
+      setState(() {});
+    }
   }
-
+//NOT IN USE
   Future<void> addPersonalInfo(String userId, String email) async {
     final values = {'id_usuario': userId, 'correo': email, 'activo': true};
     try {
