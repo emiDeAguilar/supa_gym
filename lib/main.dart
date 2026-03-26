@@ -18,24 +18,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color colorScheme = const Color.fromARGB(255, 255, 255, 255);
-     final lightTheme = ThemeData(
-      useMaterial3: true,
-      colorScheme: const ColorScheme.light(
-    primary: Colors.white,
-    onPrimary: Colors.black,
-    surface: Colors.black,
-    onSurface: Colors.white,
-      ),
-    );
+    const Color seedColor = Color.fromRGBO(255, 0, 212, 1);
 
-    final darkTheme = ThemeData(
-      useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: colorScheme,
-        brightness: Brightness.dark,
-      ),
-    );
+  final lightTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: seedColor,
+      brightness: Brightness.light,
+
+    ),
+  );
+
+  final darkTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: seedColor,
+      brightness: Brightness.dark,
+    ),
+  );
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme:lightTheme,

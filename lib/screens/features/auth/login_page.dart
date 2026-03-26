@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
 import 'package:supa_routines/screens/features/auth/register_page.dart';
 import 'package:supa_routines/widgets/gym_logo.dart';
-
+import 'package:supa_routines/styles/app_text_styles.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   void login() async {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
-
+    
     try {
       await authService.signInWithEmailPassword(email, password);
     } catch (e) {
@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
   resizeToAvoidBottomInset: false,
-  backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+  backgroundColor: Theme.of(context).colorScheme.surface,
   body: SafeArea(
     child: Column(
       children: [
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
               alignment: Alignment.center,
-              child: const GymLogo(isLightBg: false, logoSize: 40,),
+              child: const GymLogo(isDarkBg: true, logoSize: 40,),
             ),
             ],
           ),
@@ -93,20 +93,20 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                const Text(
+                 Text(
                   'Welcome\nback.',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w300,
-                    color: Color(0xFF0D0D0D),
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                     height: 1.1,
                   ),
                 ),
                 const SizedBox(height: 6),
-                const Text(
+                 Text(
                   'SIGN IN TO CONTINUE',
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: AppTextStyles.smallFont,
                     letterSpacing: 2,
                     color: Color(0xFF999999),
                   ),
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Text(
                   'EMAIL',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: AppTextStyles.mediumFont,
                     letterSpacing: 2,
                     color: Color(0xFF999999),
                   ),
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                 const Text(
                   'PASSWORD',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: AppTextStyles.mediumFont,
                     letterSpacing: 2,
                     color: Color(0xFF999999),
                   ),
@@ -186,7 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text(
                       'Forgot password?',
                       style: TextStyle(
-                        fontSize: 11,
+                        fontSize: AppTextStyles.smallFont,
                         color: Color(0xFF999999),
                         letterSpacing: 0.5,
                       ),
@@ -203,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: ElevatedButton(
                     onPressed: login,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0D0D0D),
+                      backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
                       foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -215,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Text(
                           'LOGIN',
-                          style: TextStyle(letterSpacing: 3, fontSize: 12),
+                          style: TextStyle(letterSpacing: 3, fontSize: AppTextStyles.mediumFont),
                         ),
                         SizedBox(width: 8),
                         Icon(Icons.arrow_forward, size: 16),
@@ -233,14 +233,14 @@ class _LoginPageState extends State<LoginPage> {
                       MaterialPageRoute(builder: (_) => const RegisterPage()),
                     ),
                     child: RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontSize: 12, color: Color(0xFF888888)),
+                      text:  TextSpan(
+                        style: TextStyle(fontSize: AppTextStyles.smallFont, color: Color(0xFF888888)),
                         children: [
                           TextSpan(text: "Don't have an account? "),
                           TextSpan(
                             text: 'Create one',
                             style: TextStyle(
-                              color: Color(0xFF0D0D0D),
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.underline,
                             ),

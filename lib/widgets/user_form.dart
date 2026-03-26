@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:supa_routines/styles/app_text_styles.dart';
 class UserForm extends StatefulWidget {
   final String title;
   final GlobalKey<FormState> formKey;
@@ -48,10 +48,7 @@ class _UserFormState extends State<UserForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(

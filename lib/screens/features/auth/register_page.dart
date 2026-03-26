@@ -3,6 +3,7 @@ import 'package:supa_routines/main.dart';
 import 'package:supa_routines/screens/features/auth/auth_service.dart';
 import 'package:supa_routines/widgets/gym_logo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supa_routines/styles/app_text_styles.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -55,8 +56,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    Color bg = Theme.of(context).colorScheme.primaryContainer;
-    Color text = Theme.of(context).colorScheme.onPrimaryContainer;
+    Color bg = Theme.of(context).colorScheme.surface;
+    Color text = Theme.of(context).colorScheme.onSurface;
     return Scaffold(
       resizeToAvoidBottomInset: false,
 
@@ -73,21 +74,8 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 20),
             Container(
               alignment: Alignment.center,
-              child: const GymLogo(isLightBg: true, logoSize: 40,),
+              child: const GymLogo(isDarkBg: false, logoSize: 30,),
             ),
-            const SizedBox(height: 20),
-
-            const Text(
-              'Sign Up.',
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.w300,
-                color: Color(0xFF0D0D0D),
-                height: 1.1,
-              ),
-            ),
-
-            const SizedBox(height: 28),
 
             const Text(
               'EMAIL',
@@ -194,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0D0D0D),
+                  backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
                   foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -221,7 +209,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           Text(
                             'SIGN UP',
-                            style: TextStyle(letterSpacing: 3, fontSize: 12),
+                            style: TextStyle(letterSpacing: 3, fontSize: 12,
+                           ),
                           ),
                           SizedBox(width: 8),
                           Icon(Icons.arrow_forward, size: 16),

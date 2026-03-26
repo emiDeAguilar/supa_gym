@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
 class GymLogo extends StatelessWidget {
-  final bool isLightBg;
+  final bool isDarkBg;
   final double logoSize;
 
-  const GymLogo({super.key, required this.isLightBg, required this.logoSize});
+  const GymLogo({super.key, required this.isDarkBg, required this.logoSize});
 
   @override
   Widget build(BuildContext context) {
-    Color lightText = Theme.of(context).colorScheme.onPrimaryContainer;
+    Color lightText = Theme.of(context).colorScheme.onSurface;
     Color darkText = Colors.white;
+    
+
+bool isItDark = Theme.of(context).brightness == Brightness.dark;
+    
+
+final String asset = isItDark
+    ? 'assets/images/isotipo_blanco.png'
+    : 'assets/images/isotipo.png';
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -19,17 +27,17 @@ class GymLogo extends StatelessWidget {
           height: logoSize*0.75,
           child: FittedBox(
             fit: BoxFit.contain,
-            child: 
-            isLightBg? 
-            Image(image: AssetImage('assets/image s/isotipo.png'))
-            :
-            Image(image: AssetImage('assets/images/isotipo_blanco.png')),
+            child: isDarkBg
+                ? Image(
+                          image: AssetImage('assets/images/isotipo_blanco.png'),)
+                      : Image(image: AssetImage(asset))
+                
           ),
         ),
         Text(
           'JOSS',
           style: TextStyle(
-            color: isLightBg ? lightText : darkText,
+            color: isDarkBg ?   darkText: lightText,
             fontSize: logoSize,
             fontWeight: FontWeight.bold,
             fontFamily: 'Montserrat',
@@ -39,7 +47,7 @@ class GymLogo extends StatelessWidget {
         Text(
           'FITNESS',
           style: TextStyle(
-            color: isLightBg ? lightText : darkText,
+            color: isDarkBg ?  darkText: lightText ,
             fontSize: logoSize,
             fontWeight: FontWeight.w400,
             letterSpacing: 2.0,
