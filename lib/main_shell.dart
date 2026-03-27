@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supa_routines/screens/exercises/exercises_page.dart';
 import 'package:supa_routines/screens/features/home/home_screen.dart';
+import 'package:supa_routines/screens/features/routines/routines_screen.dart';
 
 
 import 'package:supa_routines/widgets/w_bottom_menu.dart';
@@ -13,6 +14,7 @@ class _MainShellState extends State<MainShell> {
     final pages = [
       const HomeScreen(),
       const ExercisesPage(),
+      const RoutinesScreen(),
       // const ProductListPage(),
       // ProductSale(isActive: _currentIndex == 2),
       //const DashboardScreen(),

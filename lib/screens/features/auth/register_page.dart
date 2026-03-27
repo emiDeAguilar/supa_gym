@@ -4,7 +4,6 @@ import 'package:supa_routines/screens/features/auth/auth_service.dart';
 import 'package:supa_routines/screens/features/userForm/add_user_page.dart';
 import 'package:supa_routines/widgets/gym_logo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:supa_routines/styles/app_text_styles.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

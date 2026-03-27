@@ -18,7 +18,7 @@ class CircularButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Material(
-          color: Colors.blueAccent,
+           color: Theme.of(context).colorScheme.onPrimaryContainer,
           shape: const CircleBorder(),
           child: IconButton(
             onPressed: onPressed,

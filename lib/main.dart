@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supa_routines/screens/features/auth/auth_gate.dart';
 
 import 'package:supa_routines/secrets.dart';
@@ -9,7 +10,7 @@ Future<void> main() async {
     url: Secrets().url,
     anonKey: Secrets().anonKey,
   );
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 // WARNING, NOT RECOMMENDED FOR PROD: USE THIS ONLY WHEN EMAIL CONFIRMATION IS DISABLED
 final supabase = Supabase.instance.client;
