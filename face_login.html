@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1e1e24;
+            color: #333;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 320px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .video-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1); /* Mirror effect for self-view */
+        }
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-radius: 50%;
+            box-sizing: border-box;
+            pointer-events: none;
+            transition: border-color 0.3s;
+        }
+        .scanner-line {
+            width: 100%;
+            height: 3px;
+            background-color: #00ea90;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 15px #00ea90;
+            display: none;
+            animation: scan 2.5s infinite ease-in-out;
+        }
+        @keyframes scan {
+            0% { top: -5%; opacity: 0; }
+            10% { opacity: 1; }
+            50% { top: 105%; }
+            90% { opacity: 1; }
+            100% { top: -5%; opacity: 0; }
+        }
+        button {
+            width: 100%;
+            padding: 0.85rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1f6391;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            min-height: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Face Login</h2>
+    <div class="video-container">
+        <video id="video" autoplay playsinline></video>
+        <div class="scanner-overlay" id="overlay"></div>
+        <div class="scanner-line" id="scanner"></div>
+    </div>
+    <button id="loginBtn">Start Scan</button>
+    <p id="status">Requesting camera access...</p>
+</div>
+
+<script>
+    const video = document.getElementById('video');
+    const loginBtn = document.getElementById('loginBtn');
+    const status = document.getElementById('status');
+    const overlay = document.getElementById('overlay');
+    const scanner = document.getElementById('scanner');
+
+    // Request camera access on load
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+        .then(stream => {
+            video.srcObject = stream;
+            status.textContent = "Position your face in the circle.";
+        })
+        .catch(err => {
+            console.error("Camera access error:", err);
+            status.textContent = "Camera access denied or unavailable.";
+            status.style.color = '#e74c3c';
+            loginBtn.disabled = true;
+        });
+
+    loginBtn.addEventListener('click', () => {
+        if (loginBtn.textContent === 'Start Scan') {
+            // Start scanning visual simulation
+            overlay.style.borderColor = '#00ea90';
+            scanner.style.display = 'block';
+            status.textContent = "Scanning face...";
+            status.style.color = '#7f8c8d';
+            loginBtn.disabled = true;
+
+            // Simulate the processing time of a face recognition API
+            setTimeout(() => {
+                scanner.style.display = 'none';
+                overlay.style.borderColor = '#27ae60';
+                status.textContent = "Face recognized! Logging in...";
+                status.style.color = '#27ae60';
+                
+                // Simulate a login redirect
+                setTimeout(() => {
+                    status.textContent = "Welcome back!";
+                }, 1500);
+            }, 3000);
+        }
+    });
+</script>
+
+</body>
+</html>

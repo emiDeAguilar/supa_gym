@@ -16,7 +16,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentEmail = authService.getCurrentUserEmail();
+    // final currentEmail = authService.getCurrentUserEmail();
     final colors = Theme.of(context).colorScheme;
     final text = Theme.of(context).textTheme;
 
